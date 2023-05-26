@@ -1,21 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, View, Text, Platform } from 'react-native';
-import {
-  ReadiumView,
-  Settings,
-} from 'react-native-readium';
-import type { Link, Locator, File } from 'react-native-readium';
+import React, { useEffect, useRef, useState } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
+import type { File, Link, Locator } from 'react-native-readium';
+import { ReadiumView, Settings } from 'react-native-readium';
 
-import RNFS from '../utils/RNFS';
 import {
-  EPUB_URL,
-  EPUB_PATH,
-  INITIAL_LOCATION,
   DEFAULT_SETTINGS,
+  EPUB_PATH,
+  EPUB_URL,
+  INITIAL_LOCATION,
 } from '../consts';
-import { ReaderButton } from './ReaderButton';
-import { TableOfContents } from './TableOfContents';
-import { Settings as ReaderSettings } from './Settings';
+import RNFS from '../utils/RNFS';
 
 export const Reader: React.FC = () => {
   const [toc, setToc] = useState<Link[] | null>([]);
@@ -26,7 +20,6 @@ export const Reader: React.FC = () => {
 
   useEffect(() => {
     async function run() {
-
       if (Platform.OS === 'web') {
         setFile({
           url: EPUB_URL,
@@ -56,56 +49,21 @@ export const Reader: React.FC = () => {
       }
     }
 
-    run()
+    run();
   }, []);
 
   if (file) {
     return (
-      <View style={styles.container}>
-        <View style={styles.controls}>
-          <View style={styles.button}>
-            <TableOfContents
-              items={toc}
-              onPress={(loc) => setLocation(loc)}
-            />
-          </View>
-          <View style={styles.button}>
-            <ReaderSettings
-              settings={settings}
-              onSettingsChanged={(s) => setSettings(s)}
-            />
-          </View>
-        </View>
-
-        <View style={styles.reader}>
-          {Platform.OS === 'web' ? (
-            <ReaderButton
-              name="chevron-left"
-              style={{ width: '10%' }}
-              onPress={() => ref.current?.prevPage()}
-            />
-          ) : null}
-          <View style={styles.readiumContainer}>
-            <ReadiumView
-              ref={ref}
-              file={file}
-              location={location}
-              settings={settings}
-              onLocationChange={(locator: Locator) => setLocation(locator)}
-              onTableOfContents={(toc: Link[] | null) => {
-                if (toc) setToc(toc)
-              }}
-            />
-          </View>
-          {Platform.OS === 'web' ? (
-            <ReaderButton
-              name="chevron-right"
-              style={{ width: '10%' }}
-              onPress={() => ref.current?.nextPage()}
-            />
-          ) : null}
-        </View>
-      </View>
+      <ReadiumView
+        ref={ref}
+        file={file}
+        location={location}
+        settings={settings}
+        onLocationChange={(locator: Locator) => setLocation(locator)}
+        onTableOfContents={(toc: Link[] | null) => {
+          if (toc) setToc(toc);
+        }}
+      />
     );
   }
 
@@ -114,11 +72,11 @@ export const Reader: React.FC = () => {
       <Text>downloading file</Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    height: Platform.OS === 'web' ? '100vh' : '100%',
+    height: '100%',
   },
   reader: {
     flexDirection: 'row',
@@ -126,7 +84,7 @@ const styles = StyleSheet.create({
     height: '90%',
   },
   readiumContainer: {
-    width: Platform.OS === 'web' ? '80%' : '100%',
+    width: '100%',
     height: '100%',
   },
   controls: {

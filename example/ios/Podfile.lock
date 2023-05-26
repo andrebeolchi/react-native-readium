@@ -235,7 +235,7 @@ PODS:
   - React-jsinspector (0.67.5)
   - React-logger (0.67.5):
     - glog
-  - react-native-readium (1.0.1):
+  - react-native-readium (1.2.1):
     - R2Navigator
     - R2Shared
     - R2Streamer
@@ -497,7 +497,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: e9895ccae253323ca70f693945fecbba091f0abd
   React-jsinspector: ec4fe4f65ccf9d67c8429dda955d3412db8a25ef
   React-logger: 85f4ef06b9723714b2dfa5b0e5502b673b271b58
-  react-native-readium: fdeec1a13b51c77a41070557b1bc699f9752738c
+  react-native-readium: 7f71dab8b9c3eff510a2b7527e7a249691637215
   react-native-safe-area-context: da2d11bd7df9bf7779e9bdc85081c141cfa544f4
   react-native-slider: 241935e3ea8e47599c317f512f96ee8de607d4cb
   React-perflogger: d32ee13196f4ae2e4098fb7f8e7ed4f864c6fb0f
@@ -520,4 +520,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c105c88d10d9fda498fd05d4e85b0cdc8e5c0651
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.10.2

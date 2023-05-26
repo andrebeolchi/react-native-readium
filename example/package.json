@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@react-native-community/slider": "^4.2.1",
+    "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.2",
     "@rneui/base": "^4.0.0-rc.1",
